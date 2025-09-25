@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ 'Editar' if idx is not none else 'Novo' }} Funcionário</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>{{ 'Editar' if idx is not none else 'Novo' }} Funcionário</h1>
+
+<nav>
+    <a href="/"><button>Página Inicial</button></a>
+    <a href="/funcionarios"><button>Lista Funcionários</button></a>
+    <a href="/dashboard_funcionario"><button>Dashboard Funcionários</button></a>
+</nav>
+
+<form method="post">
+    Nome: <input type="text" name="Nome" value="{{ funcionario.Nome or '' }}" required><br>
+    Cargo: <input type="text" name="Cargo" value="{{ funcionario.Cargo or '' }}"><br>
+    Email: <input type="email" name="Email" value="{{ funcionario.Email or '' }}"><br>
+    Telefone: <input type="text" name="Telefone" value="{{ funcionario.Telefone or '' }}"><br>
+    Atribuições: <input type="text" name="Atribuicoes" value="{{ funcionario.Atribuicoes or '' }}"><br>
+    Observações: <input type="text" name="Observacoes" value="{{ funcionario.Observacoes or '' }}"><br>
+    Status: <input type="text" name="Status" value="{{ funcionario.Status or 'Ativo' }}"><br><br>
+    <button type="submit">Salvar</button>
+    <a href="/funcionarios"><button type="button">Cancelar</button></a>
+</form>
+</body>
+</html>

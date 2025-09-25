@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Clientes</title>
+</head>
+<body>
+    <h1>Dashboard Clientes</h1>
+    <p>Total de clientes: {{ total_clientes }}</p>
+    <p>Ativos: {{ ativos }}</p>
+    <p>Inativos: {{ inativos }}</p>
+
+    <div>
+        <!-- Gráfico Plotly -->
+        {{ graph_html | safe }}
+    </div>
+
+    <br>
+    <a href="{{ url_for('index') }}">⬅ Voltar à Página Inicial</a>
+</body>
+</html>

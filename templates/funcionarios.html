@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Funcionários</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Funcionários</h1>
+
+<nav>
+    <a href="/"><button>Página Inicial</button></a>
+    <a href="/dashboard_funcionarios"><button>Dashboard Funcionários</button></a>
+    <a href="/dashboard_clientes"><button>Dashboard Clientes</button></a>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<form method="get" class="search-form">
+    <input type="text" name="search" placeholder="Pesquisar por nome..." value="{{ search }}">
+    <button type="submit">Buscar</button>
+    <a href="/form_funcionario"><button type="button">Novo</button></a>
+</form>
+
+<table>
+    <tr>
+        <th>Nome</th><th>Cargo</th><th>Email</th><th>Telefone</th><th>Status</th><th>Atribuições</th><th>Ações</th>
+    </tr>
+    {% for f in funcionarios %}
+    <tr>
+        <td>{{ f.Nome }}</td>
+        <td>{{ f.Cargo }}</td>
+        <td>{{ f.Email }}</td>
+        <td>{{ f.Telefone }}</td>
+        <td style="color: {% if f.Status == 'Ativo' %}green{% else %}red{% endif %};">{{ f.Status }}</td>
+        <td>{{ f.Atribuicoes }}</td>
+        <td>
+            <a href="/form_funcionario?id={{ loop.index0 }}"><button type="button">Editar</button></a>
+            <a href="/delete_funcionario/{{ loop.index0 }}"><button type="button">Excluir</button></a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
